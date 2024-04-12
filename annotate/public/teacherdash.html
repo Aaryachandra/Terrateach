@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sender</title>
+    <style>
+      /* Responsive adjustments */
+      @media only screen and (min-width: 600px) {
+        /* Adjust image height for larger screens */
+        #answerImage {
+          max-height: 700px; /* Set max-height for larger screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div>
+        <h1>Sender</h1>
+        <form id="messageForm">
+          <label for="message">Message:</label>
+          <input type="text" id="message" name="message" />
+          <button type="submit">Send</button>
+          <button id="toggleAnswerButton">Show Answer</button>
+        </form>
+      </div>
+      <div>
+        <img
+          id="answerImage"
+          src="/canvas-image"
+          alt="Canvas Data"
+          style="display: none"
+        />
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Event listener for form submission
+        document
+          .getElementById("messageForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+            const message = document.getElementById("message").value;
+            fetch(`/send-message?message=${message}`)
+              .then((response) => {
+                if (response.ok) {
+                  console.log("Message sent successfully!");
+                  // Optionally, reset the form after successful submission
+                  document.getElementById("message").value = "";
+                } else {
+                  console.error("Failed to send message!");
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          });
+
+        // Event listener for "Toggle Answer" button
+        document
+          .getElementById("toggleAnswerButton")
+          .addEventListener("click", function () {
+            const answerImage = document.getElementById("answerImage");
+            const toggleButton = document.getElementById("toggleAnswerButton");
+            if (answerImage.style.display === "none") {
+              answerImage.style.display = "block"; // Show the image
+              toggleButton.textContent = "Hide Answer"; // Change button text
+            } else {
+              answerImage.style.display = "none"; // Hide the image
+              toggleButton.textContent = "Show Answer"; // Change button text
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.container1 {
+  display: flex;
+}
+.half1 {
+  width: 30%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.riverlist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2%;
+}
+.half2 {
+  width: 70%;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+#rivers {
+  background-color: #f2f2f2;
+}
+#map {
+  background-color: #eaeaea;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.path-animation {
+  animation: slideIn 0.5s ease forwards;
+}

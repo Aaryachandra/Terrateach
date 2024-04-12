@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annotatable Website with Drawing</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="website-content"></div>
+    <div id="annotation-panel">
+      <div id="color-buttons">
+        <div class="text1" style="margin-bottom: 3%">select stroke color</div>
+        <button id="color-blue"></button>
+        <button id="color-brown"></button>
+        <button id="color-green"></button>
+        <button id="color-black"></button>
+      </div>
+      <input
+        type="range"
+        id="stroke-width-slider"
+        min="1"
+        max="10"
+        value="2.5"
+      />
+      <textarea
+        id="annotation-text"
+        placeholder="Enter your annotation here..."
+      ></textarea>
+      <button id="annotate-button">label</button>
+      <button id="clear-button">Clear</button>
+      <div class="riverlist">
+        <div>Narmada</div>
+        <div>
+          <button id="button1">Show Path</button>
+        </div>
+      </div>
+      <div class="riverlist">
+        <div>Tapi</div>
+        <div>
+          <button id="button2">Show Path</button>
+        </div>
+      </div>
+      <div class="riverlist">
+        <div>Tapi</div>
+        <div>
+          <button id="button3">Show Path</button>
+        </div>
+      </div>
+
+      <button id="save-base64-button">Submit</button>
+    </div>
+    <canvas id="drawing-canvas"></canvas>
+
+    <script src="selftest.js"></script>
+  </body>
+</html>
