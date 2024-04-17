@@ -18,36 +18,90 @@
     <div>
       <div>
         <h1>Sender</h1>
-        <form id="messageForm">
-          <label for="message">Message:</label>
-          <input type="text" id="message" name="message" />
-          <button type="submit">Send</button>
+        <div style="display: flex; column-gap: 5px">
+          <form id="messageForm">
+            <label for="message">Message:</label>
+            <input type="text" id="message" name="message" />
+            <button type="submit">Send</button>
+          </form>
           <button id="toggleAnswerButton">Show Answer</button>
-        </form>
+        </div>
       </div>
-      <div>
-        <img
-          id="answerImage"
-          src="/canvas-image"
-          alt="Canvas Data"
-          style="display: none"
-        />
+      <div id="messageList">
+        <!-- Messages will be displayed here -->
       </div>
+      <img
+        id="answerImage"
+        src="/canvas-image"
+        alt="Canvas Data"
+        style="display: none"
+      />
     </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // Function to fetch and display messages
+        function fetchAndDisplayMessages() {
+          fetch("/get-messages")
+            .then((response) => response.json())
+            .then((data) => {
+              const messages = data.messages || [];
+              const messageList = document.getElementById("messageList");
+              messageList.innerHTML = ""; // Clear previous messages
+              messages.forEach((message, index) => {
+                const listItem = document.createElement("div");
+                listItem.textContent = message;
+
+                // Create a delete button
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.addEventListener("click", () => {
+                  deleteMessage(index);
+                });
+
+                // Append the delete button to the list item
+                listItem.appendChild(deleteButton);
+
+                // Append the list item to the message list
+                messageList.appendChild(listItem);
+              });
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
+        // Function to delete a message
+        function deleteMessage(index) {
+          fetch(`/delete-message?index=${index}`, { method: "DELETE" })
+            .then((response) => {
+              if (response.ok) {
+                console.log("Message deleted successfully!");
+                fetchAndDisplayMessages(); // Refresh the message list
+              } else {
+                console.error("Failed to delete message!");
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
+        // Fetch and display messages when the page loads
+        fetchAndDisplayMessages();
+
         // Event listener for form submission
         document
           .getElementById("messageForm")
           .addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent default form submission
             const message = document.getElementById("message").value;
+            if (message.trim() === "") {
+              alert("Please enter a message!"); // Display alert if message is empty
+              return;
+            }
             fetch(`/send-message?message=${message}`)
               .then((response) => {
                 if (response.ok) {
                   console.log("Message sent successfully!");
                   // Optionally, reset the form after successful submission
                   document.getElementById("message").value = "";
+                  fetchAndDisplayMessages(); // Refresh the message list
                 } else {
                   console.error("Failed to send message!");
                 }
@@ -56,21 +110,18 @@
                 console.error("Error:", error);
               });
           });
+      });
 
-        // Event listener for "Toggle Answer" button
-        document
-          .getElementById("toggleAnswerButton")
-          .addEventListener("click", function () {
-            const answerImage = document.getElementById("answerImage");
-            const toggleButton = document.getElementById("toggleAnswerButton");
-            if (answerImage.style.display === "none") {
-              answerImage.style.display = "block"; // Show the image
-              toggleButton.textContent = "Hide Answer"; // Change button text
-            } else {
-              answerImage.style.display = "none"; // Hide the image
-              toggleButton.textContent = "Show Answer"; // Change button text
-            }
-          });
+      const toggleAnswerButton = document.getElementById("toggleAnswerButton");
+      toggleAnswerButton.addEventListener("click", function () {
+        const answerImage = document.getElementById("answerImage");
+        if (answerImage.style.display === "none") {
+          answerImage.style.display = "block"; // Show the image
+          toggleAnswerButton.textContent = "Hide Answer"; // Change button text
+        } else {
+          answerImage.style.display = "none"; // Hide the image
+          toggleAnswerButton.textContent = "Show Answer"; // Change button text
+        }
       });
     </script>
   </body>

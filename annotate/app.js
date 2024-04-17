@@ -13,6 +13,7 @@ const fs = require("fs");
 
 // Define message variable to store the message
 let message = "";
+let messages = []; // Array to store messages
 
 // Route to handle POST requests from student's side to save canvas data as base64
 app.post("/save-base64", (req, res) => {
@@ -56,11 +57,14 @@ app.get("/explore-rivers", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "display.html"));
 });
 
-// Handle message submission from sender
 app.get("/send-message", (req, res) => {
   // Retrieve the message from the query parameter
-  message = req.query.message || "";
-  console.log(message);
+  const message = req.query.message || "";
+  console.log("Received message:", message);
+
+  // Store the message in the array
+  messages.push(message);
+
   // Send a response indicating success
   res.send("Message sent successfully!");
 });
@@ -83,15 +87,24 @@ app.get("/receiver", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Provide the message to the receiver
-app.get("/get-message", (req, res) => {
-  // Send the message as JSON object
-  res.json({ message: message });
+app.get("/get-messages", (req, res) => {
+  // Send the array of messages as JSON object
+  res.json({ messages: messages });
 });
+
+// Route to handle message deletion
+app.delete("/delete-message", (req, res) => {
+  const index = parseInt(req.query.index);
+  if (!isNaN(index) && index >= 0 && index < messages.length) {
+    messages.splice(index, 1); // Remove the message at the specified index
+    res.send("Message deleted successfully!");
+  } else {
+    res.status(400).send("Invalid index");
+  }
+});
+
 // Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-//eg commit

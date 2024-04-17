@@ -195,20 +195,33 @@ document
   .getElementById("save-base64-button")
   .addEventListener("click", saveCanvasAsBase64AndSendToServer);
 
-// Function to fetch the message from the server
-function fetchMessage() {
-  fetch("/get-message")
-    .then((response) => response.json())
-    .then((data) => {
-      const message = data.message || "No message received.";
-      // Update the content of the paragraph
-      document.getElementById("message").textContent = message;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-// Fetch the message when the page loads
-fetchMessage();
-// Optionally, fetch the message periodically (e.g., every 5 seconds)
-setInterval(fetchMessage, 2000);
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to fetch the messages from the server and display them
+  function fetchAndDisplayMessages() {
+    fetch("/get-messages")
+      .then((response) => response.json())
+      .then((data) => {
+        const messages = data.messages || []; // Retrieve the array of messages
+        const messageList = document.getElementById("messageList");
+
+        // Clear the existing list
+        messageList.innerHTML = "";
+
+        // Append each message as a list item to the ordered list
+        messages.forEach((message, index) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `${message}`;
+          messageList.appendChild(listItem);
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+  // Fetch and display the messages when the page loads
+  fetchAndDisplayMessages();
+
+  // Optionally, fetch and display the messages periodically (e.g., every 5 seconds)
+  setInterval(fetchAndDisplayMessages, 2000);
+});

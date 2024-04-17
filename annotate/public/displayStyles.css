@@ -3,6 +3,7 @@ body {
   width: 100vw;
   margin: 0;
   font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 .container1 {
   display: flex;
@@ -11,12 +12,24 @@ body {
   width: 30%;
   padding: 20px;
   box-sizing: border-box;
+  overflow-y: auto;
+  height: 100vh;
 }
 .riverlist {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 2%;
+  position: sticky;
+  bottom: 0;
+  padding: 10px;
+  background-color: transparent; /* Remove white background */
+}
+.buttons {
+  position: sticky;
+  bottom: 0;
+  padding: 10px;
+  background-color: transparent; /* Remove white background */
 }
 .half2 {
   width: 70%;
