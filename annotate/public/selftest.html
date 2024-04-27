@@ -5,8 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Annotatable Website with Drawing</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script defer src="js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
+    <nav
+      class="navbar navbar-expand-md navbar-dark bg-dark p-2"
+      aria-label="Fourth navbar example"
+    >
+      <div class="container-fluid">
+        <img src="logo1.png" style="height: 7cqb" />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsExample04"
+          aria-controls="navbarsExample04"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/Terrateach"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/explore-rivers"
+                >Explore Rivers</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/self-test"
+                >Test Yourself</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/"
+                >Join a room</a
+              >
+            </li>
+
+            <!-- <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Dropdown</a
+            >
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </li> -->
+          </ul>
+          <form role="search">
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
+        </div>
+      </div>
+    </nav>
     <div id="website-content"></div>
     <div id="annotation-panel">
       <div id="color-buttons">
@@ -29,26 +103,28 @@
       ></textarea>
       <button id="annotate-button">label</button>
       <button id="clear-button">Clear</button>
+      <br />
       <div class="riverlist">
         <div>Narmada</div>
-        <div>
-          <button id="button1">Show Path</button>
+        <div class="river options">
+          <button id="button1" class="btn btn-success btn-sm">Show Path</button>
         </div>
       </div>
       <div class="riverlist">
         <div>Tapi</div>
         <div>
-          <button id="button2">Show Path</button>
+          <button id="button2" class="btn btn-success btn-sm">Show Path</button>
         </div>
       </div>
       <div class="riverlist">
-        <div>Tapi</div>
+        <div>Godavari</div>
         <div>
-          <button id="button3">Show Path</button>
+          <button id="button3" class="btn btn-success btn-sm">Show Path</button>
         </div>
       </div>
-
-      <button id="save-base64-button">Submit</button>
+      <br />
+      <button id="save-base64-button">Save</button>
+      <button id="toggleAnswerButton">Show States</button>
     </div>
     <canvas id="drawing-canvas"></canvas>
 

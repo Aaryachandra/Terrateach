@@ -2,6 +2,23 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const path = require("path");
+const mongoose = require("mongoose");
+
+//mongoose setup
+
+// const mongoose = mongoose
+//   .connect("", { dbname: "server" })
+//   .then(() => {
+//     console.log("database connected successfully");
+//   })
+//   .catch((err) => console.log(err));
+
+// const studentData = new mongoose.Schema({
+//   message: String,
+//   image: Image,
+// });
+
+// const sender = mongoose.model("sender", studentData);
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
@@ -84,6 +101,14 @@ app.get("/teacher-dash", (req, res) => {
 
 // Serve the receiver page along with the message
 app.get("/receiver", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.get("/Terrateach", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "Home.html"));
+});
+
+app.get("/Terrateach/student", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 

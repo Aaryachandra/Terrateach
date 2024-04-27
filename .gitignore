@@ -1,2 +1,4 @@
 /.vscode
 /annotate/node_modules
+/annotate/public/css
+/annotate/public/js

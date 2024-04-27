@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sender</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script defer src="js/bootstrap.bundle.min.js"></script>
     <style>
       /* Responsive adjustments */
       @media only screen and (min-width: 600px) {
@@ -12,19 +14,133 @@
           max-height: 700px; /* Set max-height for larger screens */
         }
       }
+
+      #messageList {
+        margin: 2%;
+      }
+
+      #messageList div {
+        width: 20%;
+        padding: 10px;
+        text-align: center;
+      }
+      #messageList div:nth-child(even) {
+        background-color: #f2f2f2; /* Light grey */
+      }
+
+      #messageList div:nth-child(odd) {
+        background-color: #e6e6e6; /* Grey */
+      }
+
+      #messageList button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-left: 20px;
+      }
+
+      #messageList button:hover {
+        background-color: #c82333;
+      }
+      #answerImage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 8%;
+        z-index: -1; /* Ensure the image stays behind other content */
+      }
     </style>
   </head>
   <body>
+    <nav
+      class="navbar navbar-expand-md navbar-dark bg-dark p-2"
+      aria-label="Fourth navbar example"
+    >
+      <div class="container-fluid">
+        <img src="logo1.png" style="height: 7cqb" />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsExample04"
+          aria-controls="navbarsExample04"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/Terrateach"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/explore-rivers"
+                >Explore Rivers</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/self-test"
+                >Test Yourself</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/"
+                >Join a room</a
+              >
+            </li>
+
+            <!-- <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Dropdown</a
+            >
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </li> -->
+          </ul>
+          <form role="search">
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
+        </div>
+      </div>
+    </nav>
     <div>
       <div>
-        <h1>Sender</h1>
-        <div style="display: flex; column-gap: 5px">
+        <div
+          style="display: flex; column-gap: 5px; justify-content: center"
+          class="mt-3"
+        >
           <form id="messageForm">
-            <label for="message">Message:</label>
+            <!-- <label for="message">Upload question</label> -->
             <input type="text" id="message" name="message" />
-            <button type="submit">Send</button>
+            <button type="submit" class="btn btn-success">Send</button>
           </form>
-          <button id="toggleAnswerButton">Show Answer</button>
+          <button id="toggleAnswerButton" class="btn btn-dark">
+            Show Answer
+          </button>
         </div>
       </div>
       <div id="messageList">

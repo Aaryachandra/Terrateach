@@ -222,31 +222,58 @@ document.getElementById("button3").addEventListener("click", function () {
 // };
 // image.src = "vector 2.svg";
 
-function saveCanvasAsBase64AndSendToServer() {
+// Add event listener to the save button for saving as base64 and sending to server
+// Function to save canvas as base64 image and send to server
+// Function to save canvas as base64 image and download it
+function saveCanvasAsBase64() {
   // Get the data URL of the canvas content
   const dataURL = canvas.toDataURL("image/png");
 
-  // Send the base64 encoded string to the server
-  fetch("/save-base64", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ base64Data: dataURL }),
-  })
-    .then((response) => {
-      if (response.ok) {
-        console.log("Canvas data saved successfully");
-      } else {
-        console.error("Failed to save canvas data");
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  // Create an anchor element
+  const link = document.createElement("a");
+
+  // Set the href attribute to the data URL
+  link.href = dataURL;
+
+  // Set the download attribute with a file name
+  link.download = "canvas_image.png";
+
+  // Programmatically click the anchor element to trigger the download
+  link.click();
 }
 
-// Add event listener to the save button for saving as base64 and sending to server
 document
   .getElementById("save-base64-button")
-  .addEventListener("click", saveCanvasAsBase64AndSendToServer);
+  .addEventListener("click", saveCanvasAsBase64);
+
+document.addEventListener("DOMContentLoaded", function () {
+  const canvas = document.getElementById("drawing-canvas");
+  const ctx = canvas.getContext("2d");
+  const toggleButton = document.getElementById("toggleAnswerButton");
+  let isImageVisible = false;
+  let image = new Image();
+  image.src = "Group1.png";
+  image.onload = () => {
+    drawImage(); // Initially draw the image as hidden
+  };
+
+  // Function to draw the PNG image
+  function drawPNGImage() {
+    if (isImageVisible) {
+      ctx.drawImage(image, 570, 54); // Draw the image at the specified position on the canvas
+      toggleButton.textContent = "Hide States map"; // Change button text to "Hide Answer"
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+      drawImage("map1.svg");
+      toggleButton.textContent = "Show States map"; // Change button text to "Show Answer"
+    }
+  }
+
+  // Event listener for the toggle button
+  toggleButton.addEventListener("click", function () {
+    isImageVisible = !isImageVisible; // Toggle the visibility
+    drawPNGImage(); // Redraw the canvas with the updated visibility
+  });
+});
+
+drawImage("map1.svg");

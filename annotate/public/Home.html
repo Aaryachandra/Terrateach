@@ -3,11 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rivers and Map</title>
-    <link rel="stylesheet" href="displayStyles.css" />
+    <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script defer src="js/bootstrap.bundle.min.js"></script>
+    <script src="Home.js"></script>
   </head>
+  <style>
+    @keyframes appearAnimation {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .container1 {
+      display: flex;
+      margin-top: -3%;
+    }
+    .half1 {
+      width: 38%;
+      box-sizing: border-box;
+      overflow-y: auto;
+      height: 100vh;
+      margin-top: 20%;
+      margin-left: 5%;
+    }
+    .half2 {
+      width: 50%;
+      box-sizing: border-box;
+      overflow: scroll;
+    }
+    h1 {
+      font-size: 5em; /* Increased font size */
+      margin: 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #2290cb;
+    }
+
+    /* Animation keyframes for color change */
+
+    /* Style the second h1 differently */
+    h1:nth-of-type(2) {
+      font-size: 1.8em;
+      color: #555; /* Slightly darker gray color */
+      font-style: italic;
+    }
+  </style>
   <body>
     <nav
       class="navbar navbar-expand-md navbar-dark bg-dark p-2"
@@ -54,21 +98,21 @@
             </li>
 
             <!-- <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              >Dropdown</a
-            >
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
-          </li> -->
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Dropdown</a
+              >
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li> -->
           </ul>
           <form role="search">
             <input
@@ -82,375 +126,9 @@
       </div>
     </nav>
     <div class="container1">
-      <div class="half1" id="rivers">
-        <div>
-          <div class="riverlist">
-            <div>Narmada</div>
-            <div>
-              <button
-                id="hidePathButton0"
-                style="display: none"
-                onclick="hidePath(0)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(0)" class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-
-          <div class="riverlist">
-            <div>Tapi</div>
-            <div>
-              <button
-                id="hidePathButton1"
-                style="display: none"
-                onclick="hidePath(1)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(1) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-
-          <div class="riverlist">
-            <div>Godavari</div>
-            <div>
-              <button
-                id="hidePathButton2"
-                style="display: none"
-                onclick="hidePath(2)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(2) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-
-          <div class="riverlist">
-            <div>Krishna</div>
-            <div>
-              <button
-                id="hidePathButton3"
-                style="display: none"
-                onclick="hidePath(3)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(3) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-
-          <div class="riverlist">
-            <div>Kaveri</div>
-            <div>
-              <button
-                id="hidePathButton4"
-                style="display: none"
-                onclick="hidePath(4)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(4) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Mahanadi</div>
-            <div>
-              <button
-                id="hidePathButton5"
-                style="display: none"
-                onclick="hidePath(5)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(5) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Indus</div>
-            <div>
-              <button
-                id="hidePathButton6"
-                style="display: none"
-                onclick="hidePath(6)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(6) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Jhelum</div>
-            <div>
-              <button
-                id="hidePathButton7"
-                style="display: none"
-                onclick="hidePath(7)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(7) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Chenab</div>
-            <div>
-              <button
-                id="hidePathButton8"
-                style="display: none"
-                onclick="hidePath(8)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(8) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Ravi</div>
-            <div>
-              <button
-                id="hidePathButton9"
-                style="display: none"
-                onclick="hidePath(9)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(9) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Sutlej</div>
-            <div>
-              <button
-                id="hidePathButton10"
-                style="display: none"
-                onclick="hidePath(10)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(10) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Yamuna</div>
-            <div>
-              <button
-                id="hidePathButton11"
-                style="display: none"
-                onclick="hidePath(11)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(11) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Ganga</div>
-            <div>
-              <button
-                id="hidePathButton12"
-                style="display: none"
-                onclick="hidePath(12)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(12) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Chambal</div>
-            <div>
-              <button
-                id="hidePathButton13"
-                style="display: none"
-                onclick="hidePath(13)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(13) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Betwa</div>
-            <div>
-              <button
-                id="hidePathButton14"
-                style="display: none"
-                onclick="hidePath(14)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(14) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Son</div>
-            <div>
-              <button
-                id="hidePathButton15"
-                style="display: none"
-                onclick="hidePath(15)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(15) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Gomti</div>
-            <div>
-              <button
-                id="hidePathButton16"
-                style="display: none"
-                onclick="hidePath(16)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(16) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Ghaghara</div>
-            <div>
-              <button
-                id="hidePathButton17"
-                style="display: none"
-                onclick="hidePath(17)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(17) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Gandak</div>
-            <div>
-              <button
-                id="hidePathButton18"
-                style="display: none"
-                onclick="hidePath(18)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(18) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div class="riverlist">
-            <div>Kosi</div>
-            <div>
-              <button
-                id="hidePathButton19"
-                style="display: none"
-                onclick="hidePath(19)"
-                class="btn btn-secondary"
-              >
-                Hide Path
-              </button>
-              <button onclick="showPath(19) " class="btn btn-primary">
-                Show Path
-              </button>
-            </div>
-          </div>
-          <div
-            class="btn-group mt-3 mb-3"
-            role="group"
-            aria-label="Basic example"
-            style="margin-left: 50px"
-          >
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="displayall()"
-            >
-              Show all
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="toggleImage()"
-              id="toggleButton"
-              class="path-animation"
-            >
-              Show States
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="hideAllPaths()"
-            >
-              Hide all
-            </button>
-          </div>
-
-          <div class="riverlist buttons">
-            <button onclick="displayall()">Show all</button>
-            <button
-              onclick="toggleImage()"
-              id="toggleButton"
-              class="path-animation"
-            >
-              Show States Map
-            </button>
-            <button onclick="hideAllPaths()">Hide All Paths</button>
-          </div>
-        </div>
+      <div class="half1">
+        <h1>TERRATEACH</h1>
+        <h1>Making Geography easy</h1>
       </div>
       <div class="half2" id="map">
         <?xml version="1.0" standalone="no"?>
@@ -767,6 +445,6 @@ m-20 -17 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10 6 0 10 -4 10
         </svg>
       </div>
     </div>
-    <script src="displayScript.js"></script>
   </body>
+  <script></script>
 </html>

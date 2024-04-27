@@ -19,22 +19,12 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 3%;
+  padding: 2%;
   position: sticky;
   bottom: 0;
-  padding: 12px;
+  padding: 10px;
+  background-color: transparent; /* Remove white background */
 }
-
-.riverlist:nth-child(odd) {
-  background-color: #f2f2f2; /* Light grey */
-  border-radius: 1rem;
-}
-
-.riverlist:nth-child(even) {
-  background-color: #e6e6e6; /* Grey */
-  border-radius: 1rem;
-}
-
 .buttons {
   position: sticky;
   bottom: 0;
@@ -51,7 +41,6 @@ body {
 }
 #map {
   background-color: #eaeaea;
-  margin-top: -2%;
 }
 
 @keyframes slideIn {
@@ -61,8 +50,4 @@ body {
   to {
     opacity: 1;
   }
-}
-
-.path-animation {
-  animation: slideIn 0.5s ease forwards;
 }
