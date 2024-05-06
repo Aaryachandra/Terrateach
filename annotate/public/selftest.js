@@ -157,8 +157,8 @@ drawImage("map1.svg");
 // Define the locations, widths, and heights for each image
 const imageLocations = {
   "vector_2.svg": { x: 660, y: 400, width: 210, height: 60 },
-  "vector 4.svg": { x: 670, y: 445, width: 120, height: 20 },
-  "vector 5.svg": { x: 705, y: 467, width: 170, height: 100 },
+  "vector_4.svg": { x: 670, y: 445, width: 120, height: 20 },
+  "vector_5.svg": { x: 705, y: 467, width: 170, height: 100 },
   // Add more images and their locations, widths, and heights as needed
 };
 
@@ -203,11 +203,11 @@ document.getElementById("button1").addEventListener("click", function () {
 });
 
 document.getElementById("button2").addEventListener("click", function () {
-  drawSVGImage("vector 4.svg", 0.4);
+  drawSVGImage("vector_4.svg", 0.4);
 });
 
 document.getElementById("button3").addEventListener("click", function () {
-  drawSVGImage("vector 5.svg", 0.4);
+  drawSVGImage("vector_5.svg", 0.4);
 });
 
 // Add more buttons and event listeners for other images as needed
