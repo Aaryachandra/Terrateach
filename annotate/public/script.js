@@ -164,7 +164,7 @@ drawImage("map1.svg");
 // image.onerror = function () {
 //   console.error("Error loading image");
 // };
-// image.src = "vector 2.svg";
+// image.src = "vector_2.svg";
 
 function saveCanvasAsBase64AndSendToServer() {
   // Get the data URL of the canvas content

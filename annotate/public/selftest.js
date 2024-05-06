@@ -156,7 +156,7 @@ drawImage("map1.svg");
 
 // Define the locations, widths, and heights for each image
 const imageLocations = {
-  "vector 2.svg": { x: 660, y: 400, width: 210, height: 60 },
+  "vector_2.svg": { x: 660, y: 400, width: 210, height: 60 },
   "vector 4.svg": { x: 670, y: 445, width: 120, height: 20 },
   "vector 5.svg": { x: 705, y: 467, width: 170, height: 100 },
   // Add more images and their locations, widths, and heights as needed
@@ -199,7 +199,7 @@ function drawSVGImage(imagePath, transparency) {
 
 // Add event listeners to the buttons to load different SVG images
 document.getElementById("button1").addEventListener("click", function () {
-  drawSVGImage("vector 2.svg", 0.4);
+  drawSVGImage("vector_2.svg", 0.4);
 });
 
 document.getElementById("button2").addEventListener("click", function () {
@@ -220,7 +220,7 @@ document.getElementById("button3").addEventListener("click", function () {
 // image.onerror = function () {
 //   console.error("Error loading image");
 // };
-// image.src = "vector 2.svg";
+// image.src = "vector_2.svg";
 
 // Add event listener to the save button for saving as base64 and sending to server
 // Function to save canvas as base64 image and send to server
