@@ -1,2 +1,3 @@
 /.vscode
 /annotate/node_modules
+/annotate/package-lock.json
