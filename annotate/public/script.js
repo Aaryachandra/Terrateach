@@ -51,9 +51,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to resize canvas
+  // Resizing clears the canvas, so keep a copy of the current drawing and
+  // redraw the base map plus that copy afterwards.
   function resizeCanvas() {
+    let snapshot = null;
+    if (canvas.width > 0 && canvas.height > 0) {
+      snapshot = document.createElement("canvas");
+      snapshot.width = canvas.width;
+      snapshot.height = canvas.height;
+      snapshot.getContext("2d").drawImage(canvas, 0, 0);
+    }
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    drawImage("map1.svg");
+    if (snapshot) {
+      ctx.drawImage(snapshot, 0, 0);
+    }
   }
 
   // Set initial canvas size
@@ -139,20 +154,33 @@ document.addEventListener("DOMContentLoaded", function () {
 let canvas = document.getElementById("drawing-canvas");
 let ctx = canvas.getContext("2d");
 
+// Loaded images, cached so the map can be redrawn synchronously (e.g. after
+// the canvas is resized)
+const imageCache = {};
+
 // Function to draw image
 const drawImage = (filename) => {
-  const image = new Image();
-  image.src = filename;
-  image.onload = () => {
+  const paint = (image) => {
     // Increase the size of the image
     const scaleFactor = 1; // Adjust this value as needed
     const newWidth = image.width * scaleFactor;
     const newHeight = image.height * scaleFactor;
     ctx.drawImage(image, 475, 0, newWidth, newHeight);
   };
+
+  const cached = imageCache[filename];
+  if (cached && cached.complete && cached.naturalWidth > 0) {
+    paint(cached);
+    return;
+  }
+
+  const image = cached || new Image();
+  imageCache[filename] = image;
+  image.addEventListener("load", () => paint(image), { once: true });
+  if (!cached) image.src = filename;
 };
 
-drawImage("map1.svg");
+// The initial map draw happens in resizeCanvas() once the DOM is ready.
 
 // Add more buttons and event listeners for other images as needed
 
